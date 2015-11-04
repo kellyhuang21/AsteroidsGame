@@ -1,15 +1,41 @@
 //your variable declarations here
+Spaceship shippy;
 public void setup() 
 {
-  //your code here
+  size(800,800);
+  shippy = new Spaceship();
 }
 public void draw() 
 {
-  //your code here
+  background(0);
+  shippy.show();
 }
-class SpaceShip //extends Floater  
+interface Spaceship
+{
+  public void setX(int x);
+  public int getX();
+  public void setY(int y);
+  public int getY();
+  public void setDirectionX(double x);
+  public double getDirectionX();
+  public void setDirectionY(double y);
+  public double getDirectionY();
+  public void setPointDirection(int degrees);
+  public double getPointDirection();
+
+}
+class SpaceShip extends Floater  
 {   
-    //your code here
+    public void setX(int x) {myX = x;}
+    public int getX(){return myX;}   
+    public void setY(int y) {myY = y;}   
+    public int getY() {return myY;}  
+    public void setDirectionX(double x) {myDirX = x;}   
+    public double getDirectionX() {return myDirX;}  
+    public void setDirectionY(double y) {myDirY = y;}   
+    public double getDirectionY() {return myDirY;}   
+    public void setPointDirection(int degrees){myPointDirection = degrees;}   
+    public double getPointDirection(){return myPointDirection;} 
 }
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
 {   
