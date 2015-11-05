@@ -9,23 +9,25 @@ public void draw()
 {
   background(0);
   shippy.show();
+  shippy.move();
 }
-interface Spaceship
-{
-  public void setX(int x);
-  public int getX();
-  public void setY(int y);
-  public int getY();
-  public void setDirectionX(double x);
-  public double getDirectionX();
-  public void setDirectionY(double y);
-  public double getDirectionY();
-  public void setPointDirection(int degrees);
-  public double getPointDirection();
-
-}
+// public void keyPressed(){
+  
+// }
 class SpaceShip extends Floater  
 {   
+  public Spaceship()
+  {
+    corners = 3;
+    xCorners = new int[corners];
+    yCorners = new int[corners];
+    xCorners[0] = 30;
+    yCorners[0] = 75;
+    xCorners[1] = 40;
+    yCorners[1] = 20;
+    xCorners[2] = 50;
+    yCorners[2] = 75;
+  }
     public void setX(int x) {myX = x;}
     public int getX(){return myX;}   
     public void setY(int y) {myY = y;}   
