@@ -1,14 +1,22 @@
 //your variable declarations here
 SpaceShip shippy = new SpaceShip();
+Stars [] plu;
 public void setup() 
 {
   size(800,800);
+  plu = new Stars[200];
+  for(int i=0; i<plu.length; i++){
+    plu[i] = new Stars();
+  }
 }
 public void draw() 
 {
   background(0);
   shippy.show();
   shippy.move();
+  for(int i=0;i<plu.length;i++){
+    plu[i].show();
+  }
 }
 public void keyPressed(){
   if (keyCode == LEFT){
@@ -33,12 +41,14 @@ class SpaceShip extends Floater
     corners = 3;
     xCorners = new int[corners];
     yCorners = new int[corners];
-    xCorners[0] = 0;
-    yCorners[0] = 45;
-    xCorners[1] = 10;
-    yCorners[1] = 10;
-    xCorners[2] = 20;
-    yCorners[2] = 45;
+    xCorners[0] = 0-5;
+    yCorners[0] = 46-23;
+    xCorners[1] = 10-5;
+    yCorners[1] = 11-23;
+    xCorners[2] = 20-5;
+    yCorners[2] = 46-23;
+    myCenterX = 400;
+    myCenterY = 400;
     myColor =255;
   }
 
@@ -129,4 +139,16 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     endShape(CLOSE);  
   }   
 } 
-
+public class Stars{
+  private int starX, starY, starSize;
+  public Stars(){
+    starX = (int)(Math.random()*width);
+    starY = (int)(Math.random()*height);
+    starSize = (int)(Math.random()*6);
+  }
+  public void show(){
+    noStroke();
+    fill(255);
+    ellipse(starX,starY,starSize,starSize);
+  }
+}
