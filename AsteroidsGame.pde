@@ -19,17 +19,21 @@ public void draw()
   }
 }
 public void keyPressed(){
-  if (keyCode == LEFT){
+  if (keyCode == 37){
     shippy.rotate(-10);
   }
-  if (keyCode == RIGHT){
+  if (keyCode == 39){
     shippy.rotate(10);
   }
-  if (keyCode == UP){
+  if (keyCode == 38){
     shippy.accelerate(.123);
   }
-  if (keyCode == DOWN){
+  if (keyCode == 40){
     shippy.accelerate(-.123);
+  }
+  if (keyCode ==72){
+    shippy.setX((int)(Math.random()*800));
+    shippy.setY((int)(Math.random()*800));
   }
 }
 
