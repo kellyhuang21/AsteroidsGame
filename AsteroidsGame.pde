@@ -1,6 +1,6 @@
-//your variable declarations here
 SpaceShip shippy = new SpaceShip();
 Stars [] plu;
+ArrayList <Asteroids> floaty;
 public void setup() 
 {
   size(800,800);
@@ -8,29 +8,46 @@ public void setup()
   for(int i=0; i<plu.length; i++){
     plu[i] = new Stars();
   }
+  floaty = new ArrayList <Asteroids>();
+  for(int i=0; i<=21; i++){
+    floaty.add(new Asteroids());
+  }
 }
 public void draw() 
 {
   background(0);
   shippy.show();
   shippy.move();
+  
   for(int i=0;i<plu.length;i++){
     plu[i].show();
   }
+  
+  for(int i=0;i<floaty.size(); i++){
+    floaty.get(i).setDirectionX(0);
+    floaty.get(i).setDirectionY(0);
+    floaty.get(i).show();
+    floaty.get(i).move();
+  }
 }
 public void keyPressed(){
+  //left
   if (keyCode == 37){
     shippy.rotate(-10);
   }
+  //right
   if (keyCode == 39){
     shippy.rotate(10);
   }
+  //up
   if (keyCode == 38){
     shippy.accelerate(.123);
   }
+  //down
   if (keyCode == 40){
     shippy.accelerate(-.123);
   }
+  //h
   if (keyCode ==72){
     shippy.setX((int)(Math.random()*800));
     shippy.setY((int)(Math.random()*800));
@@ -154,5 +171,62 @@ public class Stars{
     noStroke();
     fill(255);
     ellipse(starX,starY,starSize,starSize);
+  }
+}
+
+public class Asteroids extends Floater
+ {
+  private int rotSpeed;
+ 
+  public Asteroids()
+  {
+    corners = 6;
+    xCorners = new int[corners];
+    yCorners = new int[corners];
+    xCorners[0] = -11;
+    yCorners[0] = -8;
+    xCorners[1] = 7;
+    yCorners[1] = -8;
+    xCorners[2] = 13;
+    yCorners[2] = 0;
+    xCorners[3] = 6;
+    yCorners[3] = 10;
+    xCorners[4] = -11;
+    yCorners[4] = 8;
+    xCorners[5] = -5;
+    yCorners[5] = 0;
+    
+    myCenterX=(int)(Math.random()*width);
+    myCenterY=(int)(Math.random()*height);
+    myColor=color(255);
+    myPointDirection=(int)(Math.random()*360);
+    
+       
+    if(Math.random()<.5)
+    {
+      rotSpeed= 3;
+    }
+    if(Math.random()>.5)
+    {
+      rotSpeed= -3;     
+    }
+    
+    }
+ 
+  public void setX(int x){myCenterX=x;}
+  public int getX(){return (int)myCenterX;}
+  public void setY(int y){myCenterY=y;}
+  public int getY(){return (int)myCenterY;}
+  public void setDirectionX(double x){myDirectionX=x;}
+  public double getDirectionX(){return myDirectionX;}
+  public void setDirectionY(double y){myDirectionY=y;}
+  public double getDirectionY(){return myDirectionY;}
+  public void setPointDirection(int degrees){myPointDirection=degrees;}
+  public double getPointDirection(){return myPointDirection;} 
+  
+  public void move()
+  {
+    rotate(rotSpeed);
+    super.move();
   }
 }
